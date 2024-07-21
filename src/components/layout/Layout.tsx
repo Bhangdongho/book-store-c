@@ -11,7 +11,7 @@ function Layout({ children }: LayoutProps) {
   return (
     <>
       <Header />
-      <ThemeSwitcher />
+      {/* <ThemeSwitcher /> */}
       <LayoutStyle>{children}</LayoutStyle>
       <Footer />
     </>

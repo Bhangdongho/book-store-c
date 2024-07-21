@@ -26,12 +26,10 @@ export const BookStoreThemeProvider = ({
   const [themeName, setThemeName] = useState<ThemeName>(DEFAULT_THEME_NAME);
 
   const toggleTheme = () => {
-    setThemeName(themeName === "light" ? "dark" : "light");
+    const newThemeName = themeName === "light" ? "dark" : "light";
+    setThemeName(newThemeName);
+    localStorage.setItem(THEME_LOCALSTORAGE_KEY, newThemeName);
   };
-  localStorage.setItem(
-    THEME_LOCALSTORAGE_KEY,
-    themeName === "light" ? "dark" : "light"
-  );
 
   useEffect(() => {
     const savedThemeName = localStorage.getItem(

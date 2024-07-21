@@ -10,7 +10,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
     timeout: DEFAULT_TIMEOUT,
     headers: {
       "content-type": "application/json",
-      Authorization: getToken() ? getToken() : "",
+      Authorization: getToken() ? `Bearer ${getToken()}` : "",
     },
     withCredentials: true,
     ...config,
@@ -21,11 +21,16 @@ export const createClient = (config?: AxiosRequestConfig) => {
       return response;
     },
     (error) => {
-      // 로그인 만료 처리
-      if (error.response.status === 401) {
-        removeToken();
-        window.location.href = "/login";
-        return;
+      if (error.response) {
+        console.error("Error response:", error.response);
+        if (error.response.status === 401) {
+          removeToken();
+          window.location.href = "/login";
+        }
+      } else if (error.request) {
+        console.error("Error request:", error.request);
+      } else {
+        console.error("Error message:", error.message);
       }
       return Promise.reject(error);
     }
