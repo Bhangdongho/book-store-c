@@ -23,7 +23,7 @@ const InputText = React.forwardRef(
   }
 );
 
-const InputTextStyle = styled.input`
+const InputTextStyle = styled.input.attrs({ type: "text" })`
   padding: 0.25rem 0.75rem;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.default};
