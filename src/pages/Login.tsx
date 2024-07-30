@@ -6,7 +6,7 @@ import Button from "../components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { login, signup } from "../api/auth.api";
-import { useAlert } from "../hooks/userAlert";
+import { useAlert } from "../hooks/useAlert";
 import { SignupStyle } from "./Signup";
 import { useAuthStore } from "../store/authStore";
 
@@ -17,7 +17,7 @@ export interface SignupProps {
 
 function Login() {
   const navigate = useNavigate();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
 
   const { isLoggedIn, storeLogin, storeLogout } = useAuthStore();
   //   const [email, setEmail] = useState("");
